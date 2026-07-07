@@ -165,16 +165,6 @@
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
 }
 
-.profilePlatform {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
-}
-
 .contentZone::before {
   content: '';
   position: absolute;

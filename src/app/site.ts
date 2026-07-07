@@ -27,7 +27,6 @@ export const SITE_KEYWORDS = [
   'members only',
   'private access',
   'free trial',
-  'Beacons',
   'personal content',
   'behind the scenes',
 ]

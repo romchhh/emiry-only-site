@@ -3,7 +3,6 @@ import Image from 'next/image'
 import {
   CREATOR_DISPLAY_NAME,
   CREATOR_NAME,
-  CREATOR_PLATFORM,
   HERO_COPY,
 } from '../content/creator'
 import { SITE_AVATAR_IMAGE, SITE_HERO_IMAGE } from '../site'
@@ -41,7 +40,6 @@ export default function Hero() {
             </div>
             <div className={styles.profileMeta}>
               <span className={styles.profileName}>{CREATOR_DISPLAY_NAME}</span>
-              <span className={styles.profilePlatform}>{CREATOR_PLATFORM}</span>
             </div>
           </div>
 

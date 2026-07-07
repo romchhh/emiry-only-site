@@ -1,8 +1,6 @@
 export const CREATOR_NAME = 'Emiri Momota'
 export const CREATOR_DISPLAY_NAME = 'Emiri Momota 💕'
 export const CREATOR_REAL_NAME = 'Emiri'
-export const CREATOR_PLATFORM = 'Beacons'
-
 export const CREATOR_TAGLINE = 'Sweet, playful, and a little too real for the feed'
 
 export const HERO_COPY = {
