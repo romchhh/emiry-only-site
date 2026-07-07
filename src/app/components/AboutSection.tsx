@@ -1,8 +1,12 @@
 import {
   ABOUT_COPY,
   ABOUT_EMPHASIS,
+  ABOUT_SECTION_TITLE,
   CREATOR_NAME,
+  CREATOR_PHYSICAL_NOTES,
+  CREATOR_STATS,
   INSIDE_FEATURES,
+  INSIDE_SECTION_TITLE,
 } from '../content/creator'
 import styles from './AboutSection.module.css'
 
@@ -13,13 +17,29 @@ export default function AboutSection() {
         <div className={styles.inner}>
           <header className={styles.header}>
             <h2 id="about-title" className={`${styles.title} gradientTitle`}>
-              About me
+              {ABOUT_SECTION_TITLE}
             </h2>
           </header>
           <div className={styles.aboutCopy}>
             {ABOUT_COPY.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+
+            <dl className={styles.statsGrid}>
+              {CREATOR_STATS.map((stat) => (
+                <div key={stat.label} className={styles.statItem}>
+                  <dt className={styles.statLabel}>{stat.label}</dt>
+                  <dd className={styles.statValue}>{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <ul className={styles.physicalNotes}>
+              {CREATOR_PHYSICAL_NOTES.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
+
             <p className={styles.aboutEmphasis}>{ABOUT_EMPHASIS}</p>
             <p className={styles.signature}>&mdash; {CREATOR_NAME}</p>
           </div>
@@ -30,7 +50,7 @@ export default function AboutSection() {
         <div className={styles.inner}>
           <header className={styles.header}>
             <h2 id="inside-title" className={`${styles.title} gradientTitle`}>
-              What&apos;s waiting for you
+              {INSIDE_SECTION_TITLE}
             </h2>
           </header>
 

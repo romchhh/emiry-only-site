@@ -16,7 +16,7 @@ export default function Hero() {
         <div className={styles.bgFrame}>
           <Image
             src={SITE_HERO_IMAGE}
-            alt={`${CREATOR_NAME} — exclusive content`}
+            alt={`${CREATOR_NAME} — playful Japanese beauty from Tokyo`}
             fill
             priority
             sizes="100vw"

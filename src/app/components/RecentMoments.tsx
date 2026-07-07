@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CREATOR_DISPLAY_NAME } from '../content/creator'
+import { CREATOR_DISPLAY_NAME, MOMENTS_SECTION } from '../content/creator'
 import { MOMENT_VIDEOS } from '../content/videos'
 import PaymentButton from './PaymentButton'
 import styles from './RecentMoments.module.css'
@@ -152,8 +152,8 @@ export default function RecentMoments() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="moments-title" className={styles.title}>
-            <span className="gradientTitle">Recent</span>{' '}
-            <em className={styles.titleEm}>moments</em>
+            <span className="gradientTitle">{MOMENTS_SECTION.titleLead}</span>{' '}
+            <em className={styles.titleEm}>{MOMENTS_SECTION.titleEm}</em>
           </h2>
         </header>
 
