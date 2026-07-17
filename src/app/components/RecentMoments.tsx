@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CREATOR_DISPLAY_NAME, MOMENTS_SECTION } from '../content/creator'
 import { MOMENT_VIDEOS } from '../content/videos'
 import PaymentButton from './PaymentButton'
@@ -37,82 +37,70 @@ function VerifiedIcon() {
 
 type MomentCardProps = {
   src: string
+  poster: string
   caption: string
   locked: boolean
 }
 
-function LockedVideoPreview({ src }: { src: string }) {
-  const [posterUrl, setPosterUrl] = useState<string | null>(null)
+/** Unlocked preview: poster until in view, then load & play video once. */
+function PreviewVideo({ src, poster }: { src: string; poster: string }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
 
   useEffect(() => {
-    let cancelled = false
-    const video = document.createElement('video')
-    video.muted = true
-    video.playsInline = true
-    video.preload = 'auto'
-    video.src = src
+    const el = containerRef.current
+    if (!el) return
 
-    const captureFrame = () => {
-      if (!video.videoWidth || !video.videoHeight) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '120px 0px', threshold: 0.15 },
+    )
 
-      const canvas = document.createElement('canvas')
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
-      const context = canvas.getContext('2d')
-      if (!context) return
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
-      context.drawImage(video, 0, 0, canvas.width, canvas.height)
-      if (!cancelled) {
-        setPosterUrl(canvas.toDataURL('image/jpeg', 0.84))
-      }
-    }
-
-    const onLoadedData = () => {
-      video.currentTime = 0.1
-    }
-
-    const onSeeked = () => {
-      captureFrame()
-    }
-
-    video.addEventListener('loadeddata', onLoadedData)
-    video.addEventListener('seeked', onSeeked)
-    video.load()
-
-    return () => {
-      cancelled = true
-      video.removeEventListener('loadeddata', onLoadedData)
-      video.removeEventListener('seeked', onSeeked)
-      video.src = ''
-    }
-  }, [src])
+  useEffect(() => {
+    if (!shouldLoad) return
+    const video = videoRef.current
+    if (!video) return
+    void video.play().catch(() => {})
+  }, [shouldLoad])
 
   return (
-    <>
-      {posterUrl ? (
-        <img src={posterUrl} alt="" className={styles.previewImage} />
-      ) : (
-        <div className={styles.previewPlaceholder} aria-hidden="true" />
-      )}
-    </>
-  )
-}
-
-function MomentCard({ src, caption, locked }: MomentCardProps) {
-  const media = (
-    <div className={styles.media}>
-      {locked ? (
-        <LockedVideoPreview src={src} />
+    <div ref={containerRef} className={styles.mediaInner}>
+      {!shouldLoad ? (
+        <img src={poster} alt="" className={styles.previewImage} loading="lazy" decoding="async" />
       ) : (
         <video
+          ref={videoRef}
           className={styles.video}
           src={src}
+          poster={poster}
           muted
           loop
           playsInline
           autoPlay
           preload="metadata"
         />
+      )}
+    </div>
+  )
+}
+
+function MomentCard({ src, poster, caption, locked }: MomentCardProps) {
+  const media = (
+    <div className={styles.media}>
+      {locked ? (
+        <img src={poster} alt="" className={styles.previewImage} loading="lazy" decoding="async" />
+      ) : (
+        <PreviewVideo src={src} poster={poster} />
       )}
       {locked && (
         <div className={styles.lockOverlay}>
@@ -162,6 +150,7 @@ export default function RecentMoments() {
             <MomentCard
               key={video.id}
               src={video.src}
+              poster={video.poster}
               caption={video.caption}
               locked={video.locked}
             />
