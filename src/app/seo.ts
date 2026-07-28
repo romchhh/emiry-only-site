@@ -65,4 +65,7 @@ export const rootMetadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'facebook-domain-verification': '93xn3c8huxc4qo85dex72wh2wj5ns1',
+  },
 }
