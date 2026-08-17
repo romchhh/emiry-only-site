@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { HERO_COPY } from '../content/creator'
 import PaymentButton from './PaymentButton'
 import styles from './FloatingCta.module.css'
 
@@ -53,9 +54,9 @@ export default function FloatingCta() {
 
   return (
     <div className={`${styles.bar} ${visible ? styles.visible : ''}`}>
-      <PaymentButton className={`${styles.button} gradientCta`} aria-label="Try for free" disabled={!visible}>
+      <PaymentButton className={`${styles.button} gradientCta`} aria-label={HERO_COPY.cta} disabled={!visible}>
         <span className={styles.arrow} aria-hidden="true">→</span>
-        Try for free!
+        {HERO_COPY.cta}
       </PaymentButton>
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { CREATOR_DISPLAY_NAME, MOMENTS_SECTION } from '../content/creator'
+import { CREATOR_DISPLAY_NAME, HERO_COPY, MOMENTS_SECTION } from '../content/creator'
 import { MOMENT_VIDEOS } from '../content/videos'
 import PaymentButton from './PaymentButton'
 import styles from './RecentMoments.module.css'
@@ -157,9 +157,9 @@ export default function RecentMoments() {
           ))}
         </div>
 
-        <PaymentButton className={`${styles.cta} gradientCta`} aria-label="Try for free">
+        <PaymentButton className={`${styles.cta} gradientCta`} aria-label={HERO_COPY.cta}>
           <span className={styles.ctaArrow} aria-hidden="true">→</span>
-          Try for free!
+          {HERO_COPY.cta}
         </PaymentButton>
       </div>
     </section>

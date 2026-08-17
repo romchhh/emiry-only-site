@@ -42,8 +42,7 @@ export const SITE_PHONE_DISPLAY = '+380 97 123 45 67'
 export const SITE_THEME_COLOR = '#F472B6'
 
 export const ACCESS_LINK =
-  process.env.NEXT_PUBLIC_ACCESS_LINK ??
-  'https://trk.of-traffic.com/go/01KWXVJ3NJAZVHMVKKJDZDQ5YV'
+  'https://trk.of-traffic.com/go/01KZXTJVEG20WQYB77MYA1KDYC'
 
 export const META_PIXEL_ID =
   process.env.NEXT_PUBLIC_META_PIXEL_ID ?? '1039478905230965'
@@ -68,5 +67,5 @@ export const SITE_FAQ = [
     a: 'Yes. I read everything and reply personally — playful, warm, and always me. No bots, no templates.',
   },
   { q: 'Can I cancel anytime?', a: 'Yes. You\'re free to leave whenever you want.' },
-  { q: 'How do I get access?', a: 'Tap Try for free, create an account, and step into my Tokyo world.' },
+  { q: 'How do I get access?', a: 'Tap Get hot video, create an account, and step into my Tokyo world.' },
 ] as const

@@ -7,9 +7,9 @@ export const CREATOR_TAGLINE = 'Playful Japanese beauty from Tokyo'
 
 export const HERO_COPY = {
   badge: 'Live from Tokyo',
-  headline: ['Not the polished Tokyo', 'you see on my feed.'],
+  headline: ['I have a gift for you —', 'message me to get it.'],
   subhead: ['Wine nights, travel diaries, real chats.', 'For free.'],
-  cta: 'Try for free!',
+  cta: 'Get hot video 🔥',
   disclaimer: 'Free trial \u00b7 No card required \u00b7 Cancel anytime',
 } as const
 
@@ -98,6 +98,6 @@ export const JOIN_CLOSING = {
   lead: 'I don\u2019t let everyone into my Tokyo world.',
   highlight: ['Just the ones who want', 'the real girlfriend vibe.'],
   question: 'Ready to come closer?',
-  cta: 'Try for free!',
+  cta: 'Get hot video 🔥',
   disclaimer: 'Free access. Limited spots.',
 } as const
